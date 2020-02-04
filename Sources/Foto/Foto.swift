@@ -4,7 +4,7 @@ import Combine
 @available(iOS 13.0, *)
 public final class Foto: NSObject, ObservableObject {
     
-    @Published private(set) var isAuthorized: Bool = PHPhotoLibrary.authorizationStatus() == .authorized
+    @Published private(set) public var isAuthorized: Bool = PHPhotoLibrary.authorizationStatus() == .authorized
     
     private let library = PHPhotoLibrary.shared()
     
