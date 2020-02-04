@@ -1,4 +1,5 @@
 import XCTest
+import Photos
 @testable import Foto
 
 final class FotoTests: XCTestCase {
@@ -6,7 +7,7 @@ final class FotoTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(Foto().text, "Hello, World!")
+        XCTAssertFalse(Foto().isAuthorized)
     }
 
     static var allTests = [
