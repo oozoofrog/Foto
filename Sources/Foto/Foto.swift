@@ -8,6 +8,8 @@ open class Foto: NSObject, ObservableObject {
     
     private let library = PHPhotoLibrary.shared()
     
+    private(set) open var fetched: PHFetchResult<PHAsset> = .init()
+    
     public override init() {
         super.init()
         
@@ -19,6 +21,20 @@ open class Foto: NSObject, ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 self?.isAuthorized = status == .authorized
             }
+        }
+    }
+    
+    open func requestPhotos(with option: Option) {
+        self.fetched = option.fetchAssets()
+    }
+    
+    open struct Option {
+        open static let all: Option {
+           return Option()
+        }()
+        
+        func fetchAssets() -> PHFetchResult<PHAsset> {
+            PHAsset.fetchAssets(with: nil)
         }
     }
 }
