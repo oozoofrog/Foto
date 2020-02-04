@@ -28,10 +28,8 @@ open class Foto: NSObject, ObservableObject {
         self.fetched = option.fetchAssets()
     }
     
-    open struct Option {
-        open static let all: Option {
-           return Option()
-        }()
+    public struct Option {
+        public static let all: Option = .init()
         
         func fetchAssets() -> PHFetchResult<PHAsset> {
             PHAsset.fetchAssets(with: nil)
