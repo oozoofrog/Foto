@@ -2,7 +2,7 @@ import Photos
 import Combine
 
 @available(iOS 13.0, *)
-final class Foto: NSObject, ObservableObject {
+public final class Foto: NSObject, ObservableObject {
     
     @Published private(set) var isAuthorized: Bool = PHPhotoLibrary.authorizationStatus() == .authorized
     
@@ -18,7 +18,7 @@ final class Foto: NSObject, ObservableObject {
 
 extension Foto: PHPhotoLibraryAvailabilityObserver {
     
-    func photoLibraryDidBecomeUnavailable(_ photoLibrary: PHPhotoLibrary) {
+    public func photoLibraryDidBecomeUnavailable(_ photoLibrary: PHPhotoLibrary) {
         isAuthorized = false
     }
     
