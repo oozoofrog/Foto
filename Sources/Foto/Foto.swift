@@ -8,8 +8,8 @@ open class Foto: NSObject, ObservableObject {
     
     private let library = PHPhotoLibrary.shared()
     
-    @Published private(set) open var fetched: PHFetchResult<PHAsset> = .init()
-    var count: Int { fetched.count }
+    @Published private(set) var fetched: PHFetchResult<PHAsset> = .init()
+    open var count: Int { fetched.count }
     
     public override init() {
         super.init()
