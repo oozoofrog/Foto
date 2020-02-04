@@ -16,7 +16,9 @@ open class Foto: NSObject, ObservableObject {
     
     open func requestAuthorize() {
         PHPhotoLibrary.requestAuthorization { (status) in
-            self.isAuthorized = status == .authorized
+            DispatchQueue.main.async { [weak self] in
+                self?.isAuthorized = status == .authorized
+            }
         }
     }
 }
