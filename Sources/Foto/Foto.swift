@@ -8,7 +8,7 @@ public final class Foto: NSObject, ObservableObject {
     
     private let library = PHPhotoLibrary.shared()
     
-    override init() {
+    public override init() {
         super.init()
         
         library.register(self as PHPhotoLibraryAvailabilityObserver)
