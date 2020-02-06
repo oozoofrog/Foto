@@ -3,7 +3,7 @@ import Photos
 @available(iOS 13.0, *)
 open class Foto: NSObject {
     
-    weak var delegate: FotoDelegate?
+    open weak var delegate: FotoDelegate?
     
     private(set) open var isAuthorized: Bool = PHPhotoLibrary.authorizationStatus() == .authorized
     
