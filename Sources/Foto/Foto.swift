@@ -62,8 +62,8 @@ extension Foto: PHPhotoLibraryAvailabilityObserver, PHPhotoLibraryChangeObserver
     
 }
 
-open protocol FotoDelegate: class {
+public protocol FotoDelegate: class {
     
-    open func fotoUpdated(_ foto: Foto)
+    func fotoUpdated(_ foto: Foto)
     
 }
