@@ -17,14 +17,14 @@ public struct Option {
         return Option().sort(by: property, ascending: ascending)
     }
     
-    func sort(by property: Property, ascending: Bool = true) -> Option {
+    public func sort(by property: Property, ascending: Bool = true) -> Option {
         var sorts = fetchOptions.sortDescriptors ?? []
         sorts.append(.by(property, ascending: ascending))
         self.fetchOptions.sortDescriptors = sorts
         return self
     }
     
-    func predicate<Root: PHAsset, Value, To>(logical: NSCompoundPredicate.LogicalType = .and,
+    public func predicate<Root: PHAsset, Value, To>(logical: NSCompoundPredicate.LogicalType = .and,
                                              left: KeyPath<Root, Value>,
                                              operator op: NSComparisonPredicate.Operator = .equalTo,
                                              modifier: NSComparisonPredicate.Modifier = .direct,
@@ -44,11 +44,11 @@ public struct Option {
                               type: op)
     }
     
-    static func fetchLimit(_ limit: Int) -> Option {
+    public static func fetchLimit(_ limit: Int) -> Option {
         return Option().fetchLimit(limit)
     }
     
-    func fetchLimit(_ limit: Int) -> Option {
+    public func fetchLimit(_ limit: Int) -> Option {
         let option = self
         option.fetchOptions.fetchLimit = limit
         return option
