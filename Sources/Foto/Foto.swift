@@ -30,7 +30,7 @@ open class Foto: NSObject {
     }
     
     open func requestPhotos(with option: Option) {
-        self.fetched = option.fetchAssets()
+        self.fetched = PHAsset.fetchAssets(with: option.fetchOptions)
         self.delegate?.fotoUpdated(self)
     }
     
@@ -38,13 +38,6 @@ open class Foto: NSObject {
         fetched.object(at: index)
     }
     
-    public struct Option {
-        public static let all: Option = .init()
-        
-        func fetchAssets() -> PHFetchResult<PHAsset> {
-            PHAsset.fetchAssets(with: nil)
-        }
-    }
 }
 
 extension Foto: PHPhotoLibraryAvailabilityObserver, PHPhotoLibraryChangeObserver {
