@@ -25,23 +25,28 @@ public struct Option {
     }
     
     public func predicate<Root: PHAsset, Value, To>(logical: NSCompoundPredicate.LogicalType = .and,
-                                             left: KeyPath<Root, Value>,
-                                             operator op: NSComparisonPredicate.Operator = .equalTo,
-                                             modifier: NSComparisonPredicate.Modifier = .direct,
-                                             to: To) -> Option {
+                                                    left: KeyPath<Root, Value>,
+                                                    operator op: NSComparisonPredicate.Operator = .equalTo,
+                                                    modifier: NSComparisonPredicate.Modifier = .direct,
+                                                    to: To) -> Option {
         let predicator = comparisonPredicate(left: left, operator: op, to: to)
         fetchOptions.predicate = fetchOptions.predicate.flatMap({ NSCompoundPredicate(type: logical, subpredicates: [$0, predicator]) }) ?? predicator
         return self
     }
     
+    public func set(predicate: NSPredicate) -> Option {
+        fetchOptions.predicate = predicate
+        return self
+    }
+    
     private func comparisonPredicate<Root: PHAsset, Value, To>(left: KeyPath<Root, Value>,
-                                     operator op: NSComparisonPredicate.Operator = .equalTo,
-                                     modifier: NSComparisonPredicate.Modifier = .direct,
-                                     to: To) -> NSPredicate {
-        NSComparisonPredicate(leftExpression: .init(forKeyPath: left),
-                              rightExpression: .init(forConstantValue: to),
-                              modifier: modifier,
-                              type: op)
+                                                               operator op: NSComparisonPredicate.Operator = .equalTo,
+                                                               modifier: NSComparisonPredicate.Modifier = .direct,
+                                                               to: To) -> NSPredicate {
+        return NSComparisonPredicate(leftExpression: .init(forKeyPath: left),
+                                     rightExpression: .init(forConstantValue: to),
+                                     modifier: modifier,
+                                     type: op)
     }
     
     public static func fetchLimit(_ limit: Int) -> Option {
