@@ -13,7 +13,7 @@ public struct Option {
     
     let fetchOptions: PHFetchOptions = .init()
     
-    static func sort(by property: Property, ascending: Bool = true) -> Option {
+    public static func sort(by property: Property, ascending: Bool = true) -> Option {
         return Option().sort(by: property, ascending: ascending)
     }
     
